@@ -1,23 +1,21 @@
 package entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Task {
 
     private int id;
-    private String description;
-    private Date createdAt;
-    private Date endedAt;
+    private String comment;
+    private LocalDate editedAt;
     private Boolean status;
 
     public Task() {
     }
 
-    public Task(int id, String description, Date createdAt, Date endedAt, Boolean status) {
+    public Task(int id, String comment, LocalDate createdAt, Boolean status) {
         this.id = id;
-        this.description = description;
-        this.createdAt = createdAt;
-        this.endedAt = endedAt;
+        this.comment = comment;
+        this.editedAt = createdAt;
         this.status = status;
     }
 
@@ -29,28 +27,20 @@ public class Task {
         this.id = id;
     }
 
-    public String getDescription() {
-        return description;
+    public String getComment() {
+        return comment;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public LocalDate getEditedAt() {
+        return editedAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getEndedAt() {
-        return endedAt;
-    }
-
-    public void setEndedAt(Date endedAt) {
-        this.endedAt = endedAt;
+    public void setEditedAt(LocalDate editedAt) {
+        this.editedAt = editedAt;
     }
 
     public Boolean getStatus() {

@@ -14,6 +14,6 @@ public class TodolistServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/todolist_menu.jsp").forward(request, response);
     }
 }
