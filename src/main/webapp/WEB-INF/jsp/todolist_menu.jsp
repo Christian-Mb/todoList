@@ -61,19 +61,31 @@
                             <div class="list-wrapper">
                                 <ul class="d-flex flex-column-reverse todo-list">
                                     <c:forEach var="tempTask" items="${TASKS_LIST }">
-                                        <li>
+                                        <c:choose>
+                                            <c:when test="${tempTask.status == false}">
+                                                <li>
 
-                                            <div class="form-check"><label class="form-check-label">
-                                                <c:if test="${tempTask.status == false}" var="test">
-                                                    <input class="checkbox" type="checkbox">
-                                                </c:if>
-                                                <c:if test="${tempTask.status == true}" var="test">
-                                                    <input class="checkbox" type="checkbox" checked="">
-                                                </c:if>
-                                                    ${tempTask.comment} <i class="input-helper"></i></label>
-                                            </div>
-                                            <i class="remove far fa-times-circle"></i>
-                                        </li>
+                                                    <div class="form-check"><label class="form-check-label">
+                                                        <input class="checkbox" type="checkbox">
+
+                                                            ${tempTask.comment} <i class="input-helper"></i></label>
+                                                    </div>
+                                                    <i class="remove far fa-times-circle"></i>
+                                                </li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li class="completed">
+
+                                                    <div class="form-check"><label class="form-check-label">
+                                                        <input class="checkbox" type="checkbox" checked="">
+
+                                                            ${tempTask.comment} <i class="input-helper"></i></label>
+                                                    </div>
+                                                    <i class="remove far fa-times-circle"></i>
+                                                </li>
+                                            </c:otherwise>
+                                        </c:choose>
+
                                     </c:forEach>
                                 </ul>
                             </div>
