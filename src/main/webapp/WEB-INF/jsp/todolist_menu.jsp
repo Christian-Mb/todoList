@@ -65,7 +65,7 @@
                                             <div class="form-check"><label class="form-check-label"> <input
                                                     class="checkbox"
                                                     type="checkbox">
-                                                    ${tempStudent.comment} <i class="input-helper"></i></label>
+                                                    ${tempTask.comment} <i class="input-helper"></i></label>
                                             </div>
                                             <i class="remove far fa-times-circle"></i>
                                         </li>

@@ -50,4 +50,14 @@ public class Task {
     public void setStatus(Boolean status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", comment='" + comment + '\'' +
+                ", editedAt=" + editedAt +
+                ", status=" + status +
+                '}';
+    }
 }

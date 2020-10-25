@@ -15,7 +15,8 @@ public class TodoListManager {
 
     public TodoListManager(DataSource dataSource) {
         this.dataSource = dataSource;
-        try (Connection connection = this.connect = dataSource.getConnection()) {
+        try {
+            this.connect = dataSource.getConnection();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -30,7 +31,7 @@ public class TodoListManager {
             while (res.next()) {
                 int id = res.getInt("task_id");
                 String comment = res.getString("comment");
-                LocalDate createdAt = res.getDate("editedAt").toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate createdAt = res.getDate("editedAt").toLocalDate();
                 Boolean status = res.getBoolean("status");
                 Task t = new Task(id, comment, createdAt, status);
                 tasks.add(t);
