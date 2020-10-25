@@ -21,20 +21,22 @@ public class TodoListManager {
         }
     }
 
-    public List<Task> getAll() throws SQLException {
+    public List<Task> getAll() {
         List<Task> tasks = new ArrayList<>();
         ResultSet res = null;
         String sql = "SELECT * FROM tasks";
-        Statement st = connect.createStatement();
-        res = st.executeQuery(sql);
-        while (res.next()) {
-            int id = res.getInt("task_id");
-            String comment = res.getString("comment");
-            LocalDate createdAt = res.getDate("editedAt").toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            Boolean status = res.getBoolean("status");
-            Task t = new Task(id, comment, createdAt, status);
-            tasks.add(t);
-
+        try (Statement st = connect.createStatement()) {
+            res = st.executeQuery(sql);
+            while (res.next()) {
+                int id = res.getInt("task_id");
+                String comment = res.getString("comment");
+                LocalDate createdAt = res.getDate("editedAt").toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                Boolean status = res.getBoolean("status");
+                Task t = new Task(id, comment, createdAt, status);
+                tasks.add(t);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
 
         return tasks;

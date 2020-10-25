@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.*" %>
+<%@ page import="entity.Task" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <%--<link rel="stylesheet" href="../css/todolist_card.css" />--%>
 <head>
@@ -26,7 +29,9 @@
     <link type="text/css" rel="stylesheet" href="../css/style.css">
 
 </head>
+<% List<Task> theStudents = (List<Task>) request.getAttribute("TASKS_LIST"); %>
 <body>
+<!-- ${TASKS_LIST}-->
 <nav class="navbar">
     <a class="nav_todolist" href="#">Todolist</a>
     <ul class="nav">
