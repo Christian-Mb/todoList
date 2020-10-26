@@ -68,13 +68,14 @@ public class TodoListManager {
         ResultSet myRs = null;
 
         try {
-            String sql = "INSERT INTO tasks (comment, editedAt, status) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO tasks (comment, editedAt) VALUES (?, ?)";
             myStmt = connect.prepareStatement(sql);
 
             myStmt.setString(1, task.getComment());
             myStmt.setDate(2, Date.valueOf(task.getEditedAt()));
-            myStmt.setBoolean(3, task.getStatus());
             myStmt.execute();
+
+            System.out.println(" add task " + task.getComment());
 
         } catch (Exception e) {
             System.out.println(e.getMessage() + " save");

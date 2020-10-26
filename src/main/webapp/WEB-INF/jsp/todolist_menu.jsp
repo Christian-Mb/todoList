@@ -43,8 +43,8 @@
     <div class="sidebar">
         <h2></h2>
         <ul>
-            <li><a th:href=@{/admin/tasks}><i class="fas fa-tasks"></i>Tasks</a></li>
-            <li><a th:href=@{/admin/users}><i class="fas fa-users"></i>Users</a></li>
+            <li><a th:href=@{/}><i class="fas fa-tasks"></i>Tasks</a></li>
+            <li><a th:href=@{/users}><i class="fas fa-users"></i>Users</a></li>
         </ul>
     </div>
     <div class="page-content page-container" id="page-content">
@@ -54,10 +54,13 @@
                     <div class="card px-3">
                         <div class="card-body">
                             <h4 class="card-title">Awesome Todo list</h4>
-                            <div class="add-items d-flex"><input type="text" class="form-control todo-list-input"
-                                                                 placeholder="What do you need to do today?">
-                                <button class="btn btn-primary font-weight-bold">Add</button>
-                            </div>
+                            <form method="post" action="AddTaskServlet">
+                                <div class="add-items d-flex"><input name="comment" type="text"
+                                                                     class="form-control todo-list-input"
+                                                                     placeholder="What do you need to do today?">
+                                    <button type="submit" class="btn btn-primary font-weight-bold">Add</button>
+                                </div>
+                            </form>
                             <div class="list-wrapper">
                                 <ul class="d-flex flex-column-reverse todo-list">
                                     <c:forEach var="tempTask" items="${TASKS_LIST }">
@@ -66,7 +69,7 @@
                                                 <li>
 
                                                     <div class="form-check"><label class="form-check-label">
-                                                        <input class="checkbox" type="checkbox">
+                                                        <input class="checkbox" type="checkbox" value=${tempTask.id}>
 
                                                             ${tempTask.comment} <i class="input-helper"></i></label>
                                                     </div>
@@ -77,7 +80,8 @@
                                                 <li class="completed">
 
                                                     <div class="form-check"><label class="form-check-label">
-                                                        <input class="checkbox" type="checkbox" checked="">
+                                                        <input class="checkbox" type="checkbox" checked=""
+                                                               value=${tempTask.id}>
 
                                                             ${tempTask.comment} <i class="input-helper"></i></label>
                                                     </div>

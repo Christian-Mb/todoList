@@ -1,4 +1,4 @@
-import(jQuery)
+require("jquery")
 (function($) {
     'use strict';
     $(function() {

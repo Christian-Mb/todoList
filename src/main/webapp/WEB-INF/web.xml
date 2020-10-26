@@ -12,6 +12,10 @@
         <servlet-name>TodolistServlet</servlet-name>
         <servlet-class>servlet.TodolistServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddTaskServlet</servlet-name>
+        <servlet-class>servlet.AddTaskServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>/css/*</url-pattern>
@@ -22,10 +26,14 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ConnectionServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>TodolistServlet</servlet-name>
-        <url-pattern>/todolist</url-pattern>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddTaskServlet</servlet-name>
+        <url-pattern>/AddTaskServlet</url-pattern>
     </servlet-mapping>
 </web-app>
