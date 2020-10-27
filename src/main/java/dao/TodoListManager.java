@@ -104,7 +104,7 @@ public class TodoListManager {
     public void deleteTask(int id) {
         try {
             Statement myStmt = connect.createStatement();
-            String sql = "delete  from tasks where id=\"" + id + "\"";
+            String sql = "delete  from tasks where task_id=\"" + id + "\"";
             myStmt.executeUpdate(sql);
             System.out.println("Remove data for " + id);
         } catch (SQLException e) {

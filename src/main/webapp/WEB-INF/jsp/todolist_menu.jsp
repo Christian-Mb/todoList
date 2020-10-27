@@ -69,11 +69,21 @@
                                                 <li>
 
                                                     <div class="form-check"><label class="form-check-label">
-                                                        <input class="checkbox" type="checkbox" value=${tempTask.id}>
+                                                        <input class="checkbox" type="checkbox" value="${tempTask.id}">
 
                                                             ${tempTask.comment} <i class="input-helper"></i></label>
                                                     </div>
-                                                    <i class="remove far fa-times-circle"></i>
+                                                    <div class="remove">
+                                                        <form method="post" action="DeleteTaskServlet">
+                                                            <input type="hidden" name="delete" value="${tempTask.id}"
+                                                                   class="remove">
+                                                            <button type="submit" class="opt btn-success"><i
+                                                                    style="margin-right: 1px"
+                                                                    class="remove far fa-times-circle"></i></button>
+                                                        </form>
+                                                    </div>
+
+
                                                 </li>
                                             </c:when>
                                             <c:otherwise>
@@ -81,7 +91,7 @@
 
                                                     <div class="form-check"><label class="form-check-label">
                                                         <input class="checkbox" type="checkbox" checked=""
-                                                               value=${tempTask.id}>
+                                                               value="${tempTask.id}">
 
                                                             ${tempTask.comment} <i class="input-helper"></i></label>
                                                     </div>

@@ -16,6 +16,10 @@
         <servlet-name>AddTaskServlet</servlet-name>
         <servlet-class>servlet.AddTaskServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteTaskServlet</servlet-name>
+        <servlet-class>servlet.DeleteTaskServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>/css/*</url-pattern>
@@ -35,5 +39,9 @@
     <servlet-mapping>
         <servlet-name>AddTaskServlet</servlet-name>
         <url-pattern>/AddTaskServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteTaskServlet</servlet-name>
+        <url-pattern>/DeleteTaskServlet</url-pattern>
     </servlet-mapping>
 </web-app>
