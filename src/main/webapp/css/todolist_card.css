@@ -438,13 +438,6 @@ input[type="checkbox"] {
     color: #405189
 }
 
-.opt {
-    background-color: #405189;
-    width: 2px;
-    height: 2px;
-    border-radius: 10px;
-}
-
 .btn {
     background-color: #405189;
     color: white;

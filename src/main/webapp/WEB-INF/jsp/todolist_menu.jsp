@@ -77,8 +77,8 @@
                                                         <form method="post" action="DeleteTaskServlet">
                                                             <input type="hidden" name="delete" value="${tempTask.id}"
                                                                    class="remove">
-                                                            <button type="submit" class="opt btn-success"><i
-                                                                    style="margin-right: 1px"
+                                                            <button style="border: none" type="submit"
+                                                                    class="remove btn-success"><i
                                                                     class="remove far fa-times-circle"></i></button>
                                                         </form>
                                                     </div>
