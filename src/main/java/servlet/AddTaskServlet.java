@@ -23,10 +23,13 @@ public class AddTaskServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String comment = request.getParameter("comment");
-        Task t = new Task();
-        t.setEditedAt(LocalDate.now());
-        t.setComment(comment);
-        todoListManager.addTask(t);
+        if (!comment.isEmpty()) {
+            Task t = new Task();
+            t.setEditedAt(LocalDate.now());
+            t.setComment(comment);
+            todoListManager.addTask(t);
+        }
+
         response.sendRedirect("/");
     }
 
