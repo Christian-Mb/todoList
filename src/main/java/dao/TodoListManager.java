@@ -43,22 +43,30 @@ public class TodoListManager {
         return tasks;
     }
 
-    public Task getTaskById(int id) throws SQLException {
+    public Task getTaskById(int id) {
         ResultSet res = null;
         String sql = "SELECT * FROM tasks WHERE id =?";
-        PreparedStatement st = connect.prepareStatement(sql);
-        st.setInt(1, id);
-        res = st.executeQuery();
         Task t = new Task();
-        while (res.next()) {
-            String comment = res.getString("comment");
-            LocalDate createdAt = res.getDate("editedAt").toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            Boolean status = res.getBoolean("status");
-            t.setId(id);
-            t.setComment(comment);
-            t.setEditedAt(createdAt);
-            t.setStatus(status);
+        try {
+            PreparedStatement st = connect.prepareStatement(sql);
+            st.setInt(1, id);
+            res = st.executeQuery();
+
+            while (res.next()) {
+                String comment = res.getString("comment");
+                LocalDate createdAt = res.getDate("editedAt").toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                Boolean status = res.getBoolean("status");
+                t.setId(id);
+                t.setComment(comment);
+                t.setEditedAt(createdAt);
+                t.setStatus(status);
+            }
+
         }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
 
         return t;
     }

@@ -30,7 +30,7 @@ public class AddTaskServlet extends HttpServlet {
             todoListManager.addTask(t);
         }
 
-        response.sendRedirect("/");
+        response.sendRedirect("/TodolistServlet");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

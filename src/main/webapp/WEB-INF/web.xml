@@ -4,14 +4,17 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-
     <servlet>
-        <servlet-name>EditTaskServlet</servlet-name>
-        <servlet-class>servlet.EditTaskServlet</servlet-class>
+        <servlet-name>EditTaskStatusServlet</servlet-name>
+        <servlet-class>servlet.EditTaskStatusServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>TodolistServlet</servlet-name>
         <servlet-class>servlet.TodolistServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConnectionServlet</servlet-name>
+        <servlet-class>servlet.ConnectionServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddTaskServlet</servlet-name>
@@ -35,7 +38,7 @@
         <url-pattern>/js/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>TodolistServlet</servlet-name>
+        <servlet-name>ConnectionServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -47,11 +50,15 @@
         <url-pattern>/DeleteTaskServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EditTaskServlet</servlet-name>
-        <url-pattern>/EditTaskServlet</url-pattern>
+        <servlet-name>EditTaskStatusServlet</servlet-name>
+        <url-pattern>/EditTaskStatusServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TodolistServlet</servlet-name>
+        <url-pattern>/TodolistServlet</url-pattern>
     </servlet-mapping>
 </web-app>
