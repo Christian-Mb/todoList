@@ -30,12 +30,18 @@
 
 </head>
 <% List<Task> theStudents = (List<Task>) request.getAttribute("TASKS_LIST"); %>
+<%
+    if(session.getAttribute("email")==null){
+        response.sendRedirect("login.jsp");
+    }
+%>
+<%= session.getAttribute("email")%>
 <body>
 <!-- ${TASKS_LIST}-->
 <nav class="navbar">
     <a class="nav_todolist" href="#">Todolist</a>
     <ul class="nav">
-        <li class="nav_item"><a class="nav_link" th:href="@{/admin/login}">Se déconnecter</a></li>
+        <li class="nav_item"><a class="nav_link" href="/LogoutServlet" >Se déconnecter</a></li>
     </ul>
 </nav>
 
@@ -43,8 +49,8 @@
     <div class="sidebar">
         <h2></h2>
         <ul>
-            <li><a th:href=@{/}><i class="fas fa-tasks"></i>Tasks</a></li>
-            <li><a th:href=@{/users}><i class="fas fa-users"></i>Users</a></li>
+            <li><a href="/"><i class="fas fa-tasks"></i>Tasks</a></li>
+            <li><a href="/Login"><i class="fas fa-users"></i>Users</a></li>
         </ul>
     </div>
     <div class="page-content page-container" id="page-content">
