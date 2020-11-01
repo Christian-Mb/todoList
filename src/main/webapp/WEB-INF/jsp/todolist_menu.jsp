@@ -35,7 +35,7 @@
         response.sendRedirect("login.jsp");
     }
 %>
-<%= session.getAttribute("email")%>
+
 <body>
 <!-- ${TASKS_LIST}-->
 <nav class="navbar">
@@ -75,7 +75,16 @@
                                                 <li>
 
                                                     <div class="form-check"><label class="form-check-label">
-                                                        <input class="checkbox" type="checkbox" value="${tempTask.id}">
+                                                        <form method="post" action="/EditTaskStatusServlet">
+                                                            <input type="hidden" name="checked" value="${tempTask.id}">
+
+                                                            <button type="submit">
+                                                                <input class="checkbox" type="checkbox">
+
+                                                            </button>
+
+                                                        </form>
+
 
                                                             ${tempTask.comment} <i class="input-helper"></i></label>
                                                     </div>
@@ -96,8 +105,15 @@
                                                 <li class="completed">
 
                                                     <div class="form-check"><label class="form-check-label">
-                                                        <input class="checkbox" type="checkbox" checked=""
-                                                               value="${tempTask.id}">
+                                                        <form method="post" action="/EditTaskStatusServlet">
+                                                            <input type="hidden" name="checked" value="${tempTask.id}">
+                                                            <button type="submit">
+
+                                                                <input class="checkbox" type="checkbox">
+
+                                                            </button>
+
+                                                        </form>
 
                                                             ${tempTask.comment} <i class="input-helper"></i></label>
                                                     </div>

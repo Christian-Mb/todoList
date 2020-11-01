@@ -45,7 +45,7 @@ public class TodoListManager {
 
     public Task getTaskById(int id) {
         ResultSet res = null;
-        String sql = "SELECT * FROM tasks WHERE id =?";
+        String sql = "SELECT * FROM tasks WHERE task_id =?";
         Task t = new Task();
         try {
             PreparedStatement st = connect.prepareStatement(sql);
@@ -54,7 +54,7 @@ public class TodoListManager {
 
             while (res.next()) {
                 String comment = res.getString("comment");
-                LocalDate createdAt = res.getDate("editedAt").toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                LocalDate createdAt = res.getDate("editedAt").toLocalDate();
                 Boolean status = res.getBoolean("status");
                 t.setId(id);
                 t.setComment(comment);
@@ -95,7 +95,7 @@ public class TodoListManager {
         PreparedStatement myStmt = null;
 
         try {
-            String sql = "UPDATE `tasks` SET `comment`=?,`editedAt`=?,`status`=? WHERE id=?";
+            String sql = "UPDATE `tasks` SET `comment`=?,`editedAt`=?,`status`=? WHERE task_id=?";
             myStmt = connect.prepareStatement(sql);
             myStmt.setString(1, task.getComment());
             myStmt.setDate(2, Date.valueOf(task.getEditedAt()));
