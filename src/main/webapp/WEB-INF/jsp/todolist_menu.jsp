@@ -73,21 +73,18 @@
                                         <c:choose>
                                             <c:when test="${tempTask.status == false}">
                                                 <li>
+                                                    <form method="post" action="/EditTaskStatusServlet">
+                                                        <input type="hidden" name="checked" value="${tempTask.id}">
 
-                                                    <div class="form-check"><label class="form-check-label">
-                                                        <form method="post" action="/EditTaskStatusServlet">
-                                                            <input type="hidden" name="checked" value="${tempTask.id}">
-
-                                                            <button type="submit">
-                                                                <input class="checkbox" type="checkbox">
-
-                                                            </button>
-
-                                                        </form>
+                                                        <div class="form-check"><label class="form-check-label">
 
 
-                                                            ${tempTask.comment} <i class="input-helper"></i></label>
-                                                    </div>
+                                                                    <input  class="checkbox" type="checkbox" onchange="this.form.submit()">
+
+
+                                                                ${tempTask.comment} <i class="input-helper"></i></label>
+                                                        </div>
+                                                    </form>
                                                     <div class="remove">
                                                         <form method="post" action="DeleteTaskServlet">
                                                             <input type="hidden" name="delete" value="${tempTask.id}"
@@ -104,19 +101,15 @@
                                             <c:otherwise>
                                                 <li class="completed">
 
-                                                    <div class="form-check"><label class="form-check-label">
-                                                        <form method="post" action="/EditTaskStatusServlet">
-                                                            <input type="hidden" name="checked" value="${tempTask.id}">
-                                                            <button type="submit">
+                                                    <form method="post" action="/EditTaskStatusServlet">
+                                                        <input type="hidden" name="checked" value="${tempTask.id}">
 
-                                                                <input class="checkbox" type="checkbox">
+                                                        <div class="form-check"><label class="form-check-label">
 
-                                                            </button>
-
-                                                        </form>
-
-                                                            ${tempTask.comment} <i class="input-helper"></i></label>
-                                                    </div>
+                                                            <input class="checkbox" type="checkbox" checked="" onclick="this.form.submit()">
+                                                                ${tempTask.comment} <i class="input-helper"></i></label>
+                                                        </div>
+                                                    </form>
                                                     <i class="remove far fa-times-circle"></i>
                                                 </li>
                                             </c:otherwise>
