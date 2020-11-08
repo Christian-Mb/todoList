@@ -3,10 +3,7 @@ package servlet;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.List;
@@ -40,6 +37,9 @@ public class ConnectionServlet extends HttpServlet {
             request.setAttribute("connectStatus", "Connection réussi");
             List<Task> taskList = todoListManager.getAll();
             request.setAttribute("TASKS_LIST", taskList);
+            Cookie cookie = new Cookie("email", email);
+            cookie.setMaxAge(60*60*24*30);
+            response.addCookie(cookie);
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/todolist_menu.jsp").forward(request, response);
         } else{
             System.out.println("false");
@@ -49,7 +49,23 @@ public class ConnectionServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
+        Cookie[] cookies = request.getCookies();
+        boolean cookie_exist = false;
+        if(cookies != null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("email")){
+                    HttpSession session = request.getSession();
+                    session.setAttribute("email", cookie.getValue());
+                    cookie_exist = true;
+                }
+            }
+        }
+        if(cookie_exist){
+            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/todolist_menu.jsp").forward(request, response);
+        } else{
+            this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
+
+        }
     }
 
     @Override

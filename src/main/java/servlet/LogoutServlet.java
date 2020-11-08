@@ -2,10 +2,7 @@ package servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 @WebServlet(name = "LogoutServlet")
@@ -16,8 +13,13 @@ public class LogoutServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+        request.setAttribute("email", session.getAttribute("email"));
         session.removeAttribute("email");
         session.invalidate();
+        Cookie[] cookies = request.getCookies();
+        Cookie cookie = new Cookie("email", "");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
         this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
     }
 }

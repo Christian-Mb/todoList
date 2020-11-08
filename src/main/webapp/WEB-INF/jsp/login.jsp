@@ -10,7 +10,7 @@
 <div class="login-box">
     <form class="form-signin" method="post" action="login">
         <div class="textbox">
-            <input type="email" id="input_email" class="input_email" name="email" placeholder="Email" required autofocus>
+            <input type="email" id="input_email" class="input_email" name="email" placeholder="Email" value="<c:out value="${email}"/> " required autofocus>
         </div>
 
         <div class="textbox">
