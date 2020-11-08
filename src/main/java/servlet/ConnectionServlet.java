@@ -36,7 +36,9 @@ public class ConnectionServlet extends HttpServlet {
             session.setAttribute("email", email);
             request.setAttribute("connectStatus", "Connection réussi");
             List<Task> taskList = todoListManager.getAll();
+            Boolean isAdmin = UserdbManager.userIsAdmin(email);
             request.setAttribute("TASKS_LIST", taskList);
+            session.setAttribute("isAdmin",isAdmin);
             Cookie cookie = new Cookie("email", email);
             cookie.setMaxAge(60*60*24*30);
             response.addCookie(cookie);

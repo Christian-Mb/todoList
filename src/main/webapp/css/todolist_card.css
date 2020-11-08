@@ -408,7 +408,7 @@ input[type="checkbox"] {
 .ml-auto,
 .list-wrapper .remove,
 .mx-auto {
-    /*margin-left: auto !important*/
+    margin-left: auto !important
 }
 
 .mdi-close-circle-outline:before {

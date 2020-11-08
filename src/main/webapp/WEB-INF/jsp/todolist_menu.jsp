@@ -41,7 +41,8 @@
 <nav class="navbar">
     <a class="nav_todolist" href="#">Todolist</a>
     <ul class="nav">
-        <li class="nav_item"><a class="nav_link" href="/LogoutServlet"><%=session.getAttribute("email")%> Log out</a></li>
+        <li class="nav_item"><a class="nav_link" href="/LogoutServlet"><%=session.getAttribute("email")%> Log out</a>
+        </li>
     </ul>
 </nav>
 
@@ -60,13 +61,28 @@
                     <div class="card px-3">
                         <div class="card-body">
                             <h4 class="card-title">Awesome Todo list</h4>
-                            <form method="post" action="AddTaskServlet">
-                                <div class="add-items d-flex"><input name="comment" type="text"
-                                                                     class="form-control todo-list-input"
-                                                                     placeholder="What do you need to do today?">
-                                    <button type="submit" class="btn btn-primary font-weight-bold">Add</button>
-                                </div>
-                            </form>
+                            <c:choose>
+
+                                <c:when test="${sessionScope.isAdmin == true}">
+                                    <form method="post" action="AddTaskServlet">
+                                        <div class="add-items d-flex"><input name="comment" type="text"
+                                                                             class="form-control todo-list-input"
+                                                                             placeholder="What do you need to do today?">
+                                            <button type="submit" class="btn btn-primary font-weight-bold">Add</button>
+                                        </div>
+                                    </form>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="add-items d-flex"><input disabled name="comment" type="text"
+                                                                         class="form-control todo-list-input"
+                                                                         placeholder="What do you need to do today?">
+                                        <button disabled type="submit" class="btn btn-primary font-weight-bold">Add
+                                        </button>
+                                    </div>
+
+                                </c:otherwise>
+                            </c:choose>
+
                             <div class="list-wrapper">
                                 <ul class="d-flex flex-column-reverse todo-list">
                                     <c:forEach var="tempTask" items="${TASKS_LIST }">
@@ -94,26 +110,39 @@
 
                             </div>
 
-                            <div style="margin-top: 7px;  margin-left: auto " class="edit">
+                            <c:if test="${sessionScope.isAdmin == true}">
 
-                                <form method="post" action="EditTaskServlet">
-                                    <input type="hidden" name="taskID" value="${tempTask.id}">
-                                    <input type="text" placeholder="Update task" onchange="this.form.submit()"
-                                           name="comment"> <i class="input-helper"></i>
+                                <div style="margin-top: 7px;  margin-left: auto " class="edit">
 
-                                </form>
-                            </div>
+                                    <form method="post" action="EditTaskServlet">
+                                        <input type="hidden" name="taskID" value="${tempTask.id}">
+                                        <input type="text" placeholder="Update task" onchange="this.form.submit()"
+                                               name="comment"> <i class="input-helper"></i>
 
+                                    </form>
+                                </div>
 
-                            <div class="remove">
-                                <form method="post" action="DeleteTaskServlet">
-                                    <input type="hidden" name="delete" value="${tempTask.id}"
-                                           class="remove">
-                                    <button style="border: none" type="submit"
-                                            class="remove btn-success"><i
-                                            class="remove far fa-times-circle"></i></button>
-                                </form>
-                            </div>
+                            </c:if>
+
+                            <c:choose>
+
+                                <c:when test="${sessionScope.isAdmin == true}">
+
+                                    <div class="remove">
+                                        <form method="post" action="DeleteTaskServlet">
+                                            <input type="hidden" name="delete" value="${tempTask.id}"
+                                                   class="remove">
+                                            <button style="border: none" type="submit"
+                                                    class="remove btn-success"><i
+                                                    class="remove far fa-times-circle"></i></button>
+                                        </form>
+                                    </div>
+
+                                </c:when>
+                                <c:otherwise>
+                                    <i class="remove far fa-times-circle"></i>
+                                </c:otherwise>
+                            </c:choose>
 
 
                             </li>

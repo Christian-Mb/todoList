@@ -5,7 +5,6 @@ import entity.Task;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,8 +61,7 @@ public class TodoListManager {
                 t.setStatus(status);
             }
 
-        }
-        catch (SQLException throwables) {
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
