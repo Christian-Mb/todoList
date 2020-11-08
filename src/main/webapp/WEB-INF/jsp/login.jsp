@@ -1,13 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Login</title>
+
+    <link type="text/css" rel="stylesheet" href="../css/login.css">
+    <title>Todolist | Login</title>
 </head>
 <body>
-    <form method="post" action="login">
-        <label>Email : </label><input type="text" name="email" id="email">
-        <label>Password : </label><input type="password" name="password" id="password">
-        <input type="submit">
+<div class="login-box">
+    <form class="form-signin" method="post" action="login">
+        <div class="textbox">
+            <input type="email" id="input_email" class="input_email" name="email" placeholder="Email" required autofocus>
+        </div>
+
+        <div class="textbox">
+            <input type="password" id="input_mdp" class="input_mdp" name="password" placeholder="Password" required>
+        </div>
+        <button class="btn" type="submit">Sign in</button>
     </form>
+</div>
 </body>
 </html>
