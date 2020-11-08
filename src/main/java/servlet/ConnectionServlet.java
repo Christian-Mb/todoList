@@ -63,6 +63,8 @@ public class ConnectionServlet extends HttpServlet {
             }
         }
         if(cookie_exist){
+            List<Task> taskList = todoListManager.getAll();
+            request.setAttribute("TASKS_LIST", taskList);
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/todolist_menu.jsp").forward(request, response);
         } else{
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
