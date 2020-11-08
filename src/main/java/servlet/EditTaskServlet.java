@@ -13,31 +13,33 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.time.LocalDate;
 
-@WebServlet(name = "EditTaskStatusServlet")
-public class EditTaskStatusServlet extends HttpServlet {
+@WebServlet(name = "EditTaskServlet")
+public class EditTaskServlet extends HttpServlet {
     @Resource(name = "jdbc/toDoDb")
     private DataSource dataSource;
 
     private TodoListManager todoListManager;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("checked"));
+        int id = Integer.parseInt(request.getParameter("taskID"));
+        System.out.println("Je suisd ans la joie : " +id);
+        String newComment =request.getParameter("comment");
+        System.out.println("Je suisd ans la joie : " +newComment);
         Task t = todoListManager.getTaskById(id);
-        if(t.getStatus()==true){
-            t.setStatus(false);
+        if(!t.getComment().equals(newComment)){
+            t.setComment(newComment);
             t.setEditedAt(LocalDate.now());
+            todoListManager.updateTask(t);
         }
         else {
-            t.setStatus(true);
+            System.out.println("Both Strings are identical");
         }
 
-        todoListManager.updateTask(t);
         response.sendRedirect("/TodolistServlet");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
-
     @Override
     public void init() throws ServletException {
         super.init();

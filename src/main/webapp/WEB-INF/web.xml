@@ -9,6 +9,10 @@
         <servlet-class>servlet.EditTaskStatusServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>EditTaskServlet</servlet-name>
+        <servlet-class>servlet.EditTaskServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>TodolistServlet</servlet-name>
         <servlet-class>servlet.TodolistServlet</servlet-class>
     </servlet>
@@ -60,5 +64,9 @@
     <servlet-mapping>
         <servlet-name>TodolistServlet</servlet-name>
         <url-pattern>/TodolistServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditTaskServlet</servlet-name>
+        <url-pattern>/EditTaskServlet</url-pattern>
     </servlet-mapping>
 </web-app>

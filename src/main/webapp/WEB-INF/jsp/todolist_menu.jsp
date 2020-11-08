@@ -31,7 +31,7 @@
 </head>
 <% List<Task> theStudents = (List<Task>) request.getAttribute("TASKS_LIST"); %>
 <%
-    if(session.getAttribute("email")==null){
+    if (session.getAttribute("email") == null) {
         response.sendRedirect("login.jsp");
     }
 %>
@@ -41,7 +41,7 @@
 <nav class="navbar">
     <a class="nav_todolist" href="#">Todolist</a>
     <ul class="nav">
-        <li class="nav_item"><a class="nav_link" href="/LogoutServlet" >Se déconnecter</a></li>
+        <li class="nav_item"><a class="nav_link" href="/LogoutServlet">Se déconnecter</a></li>
     </ul>
 </nav>
 
@@ -70,60 +70,84 @@
                             <div class="list-wrapper">
                                 <ul class="d-flex flex-column-reverse todo-list">
                                     <c:forEach var="tempTask" items="${TASKS_LIST }">
-                                        <c:choose>
-                                            <c:when test="${tempTask.status == false}">
-                                                <li>
-                                                    <form method="post" action="/EditTaskStatusServlet">
-                                                        <input type="hidden" name="checked" value="${tempTask.id}">
+                                    <c:choose>
+                                    <c:when test="${tempTask.status == false}">
+                                    <li>
 
-                                                        <div class="form-check"><label class="form-check-label">
+                                        <div class="form-check"><label class="form-check-label">
 
+                                            <div>
+                                                <form method="post" action="/EditTaskStatusServlet">
+                                                    <input type="hidden" name="checked" value="${tempTask.id}">
 
-                                                                    <input  class="checkbox" type="checkbox" onchange="this.form.submit()">
+                                                    <input class="checkbox" type="checkbox"
+                                                           onchange="this.form.submit()">
+                                                        ${tempTask.comment} <i class="input-helper"></i>
+                                        </label>
+                                            </form>
 
+                                        </div>
+                                        <div>
 
-                                                                ${tempTask.comment} <i class="input-helper"></i></label>
-                                                        </div>
-                                                    </form>
-                                                    <div class="remove">
-                                                        <form method="post" action="DeleteTaskServlet">
-                                                            <input type="hidden" name="delete" value="${tempTask.id}"
-                                                                   class="remove">
-                                                            <button style="border: none" type="submit"
-                                                                    class="remove btn-success"><i
-                                                                    class="remove far fa-times-circle"></i></button>
-                                                        </form>
-                                                    </div>
+                                        </div>
 
 
-                                                </li>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <li class="completed">
-
-                                                    <form method="post" action="/EditTaskStatusServlet">
-                                                        <input type="hidden" name="checked" value="${tempTask.id}">
-
-                                                        <div class="form-check"><label class="form-check-label">
-
-                                                            <input class="checkbox" type="checkbox" checked="" onclick="this.form.submit()">
-                                                                ${tempTask.comment} <i class="input-helper"></i></label>
-                                                        </div>
-                                                    </form>
-                                                    <i class="remove far fa-times-circle"></i>
-                                                </li>
-                                            </c:otherwise>
-                                        </c:choose>
-
-                                    </c:forEach>
-                                </ul>
                             </div>
+
+                            <div style="margin-top: 7px;  margin-left: auto " class="edit">
+
+                                <form method="post" action="EditTaskServlet">
+                                    <input type="hidden" name="taskID" value="${tempTask.id}">
+                                    <input type="text" placeholder="Update task" onchange="this.form.submit()"
+                                           name="comment"> <i class="input-helper"></i>
+
+                                </form>
+                            </div>
+
+
+                            <div class="remove">
+                                <form method="post" action="DeleteTaskServlet">
+                                    <input type="hidden" name="delete" value="${tempTask.id}"
+                                           class="remove">
+                                    <button style="border: none" type="submit"
+                                            class="remove btn-success"><i
+                                            class="remove far fa-times-circle"></i></button>
+                                </form>
+                            </div>
+
+
+                            </li>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="completed">
+
+
+                                    <div class="form-check"><label class="form-check-label">
+                                        <form method="post" action="/EditTaskStatusServlet">
+                                            <input type="hidden" name="checked" value="${tempTask.id}">
+
+                                            <input class="checkbox" type="checkbox" checked=""
+                                                   onclick="this.form.submit()">
+
+                                                ${tempTask.comment} <i class="input-helper"></i>
+                                    </label>
+                                        </form>
+                                    </div>
+
+                                    <i class="remove far fa-times-circle"></i>
+                                </li>
+                            </c:otherwise>
+                            </c:choose>
+
+                            </c:forEach>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>
