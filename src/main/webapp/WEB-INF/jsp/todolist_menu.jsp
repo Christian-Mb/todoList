@@ -41,7 +41,7 @@
 <nav class="navbar">
     <a class="nav_todolist" href="#">Todolist</a>
     <ul class="nav">
-        <li class="nav_item"><a class="nav_link" href="/LogoutServlet">Se déconnecter</a></li>
+        <li class="nav_item"><a class="nav_link" href="/LogoutServlet"><%=session.getAttribute("email")%> Log out</a></li>
     </ul>
 </nav>
 
