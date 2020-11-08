@@ -49,7 +49,7 @@
     <div class="sidebar">
         <h2></h2>
         <ul>
-            <li><a href="/"><i class="fas fa-tasks"></i>Tasks</a></li>
+            <li><a href="/TodolistServlet"><i class="fas fa-tasks"></i>Tasks</a></li>
             <li><a href="/Login"><i class="fas fa-users"></i>Users</a></li>
         </ul>
     </div>
