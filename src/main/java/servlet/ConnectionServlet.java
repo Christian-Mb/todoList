@@ -27,14 +27,14 @@ public class ConnectionServlet extends HttpServlet {
         try{
             exist = UserdbManager.login(email, password);
         } catch (Exception e){
-            request.setAttribute("connectStatus", "Erreur de connection avec la base de donnée");
+            request.setAttribute("connectStatus", "Connexion to the database failed");
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
         }
         if(exist){
             System.out.println("true");
             HttpSession session = request.getSession();
             session.setAttribute("email", email);
-            request.setAttribute("connectStatus", "Connection réussi");
+            request.setAttribute("connectStatus", "Connexion Success");
             List<Task> taskList = todoListManager.getAll();
             Boolean isAdmin = UserdbManager.userIsAdmin(email);
             request.setAttribute("TASKS_LIST", taskList);
@@ -45,7 +45,7 @@ public class ConnectionServlet extends HttpServlet {
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/todolist_menu.jsp").forward(request, response);
         } else{
             System.out.println("false");
-            request.setAttribute("connectStatus", "Mot de passe ou email incorrect");
+            request.setAttribute("connectStatus", "Password or email are wrong");
             this.getServletContext().getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
         }
     }
